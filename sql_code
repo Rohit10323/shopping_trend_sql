@@ -1,0 +1,72 @@
+USE SHOPPING;
+
+CREATE TABLE SHOPPING (
+    customer_id INT PRIMARY KEY,
+    age INT NOT NULL,
+    gender VARCHAR(20),
+    item_purchased VARCHAR(50),
+    category VARCHAR(50),
+    purchase_amount INT,
+    location VARCHAR(50),
+    size VARCHAR(10),
+    color VARCHAR(30),
+    season VARCHAR(30),
+    review_rating FLOAT,
+    subscription_status VARCHAR(30),
+    payment_method VARCHAR(40),
+    shipping_type VARCHAR(10),
+    discount_applied VARCHAR(10),
+    promo_code_used VARCHAR(10), 
+    Previous_Purchases INT, 
+    Preferred_Payment_Method VARCHAR(50), 
+    Frequency_of_Purchases VARCHAR(50)
+);
+
+
+select * FROM SHOPPING ;
+
+drop table shopping;
+
+SELECT category, AVG(purchase_amount) AS Avg_PurchaseAmount
+FROM SHOPPING
+GROUP BY Category; 
+#Average Purchase Amount by Category
+
+SELECT gender, COUNT(customer_id) AS purchase_count, AVG(purchase_amount) AS AvgPurchaseAmount
+FROM SHOPPING
+GROUP BY Gender;
+#Gender-Based Purchase Analysis
+
+SELECT Item_Purchased, COUNT(*) AS PurchaseCount
+FROM SHOPPING
+GROUP BY Item_Purchased
+ORDER BY PurchaseCount DESC;
+#Popular Items and Purchase Counts:
+
+SELECT Item_Purchased, COUNT(*) AS PurchaseCount
+FROM SHOPPING
+GROUP BY Item_Purchased
+ORDER BY PurchaseCount DESC
+limit 5;
+#Popular Items TOP 5 and Purchase Counts:
+
+SELECT Category, AVG(Review_Rating) AS Avg_Review_Rating
+FROM SHOPPING
+GROUP BY Category;
+#Average Review Rating by Category
+
+SELECT subscription_status, COUNT(*) AS CustomerCount
+FROM SHOPPING
+GROUP BY subscription_status;
+#Customer Subscription Analysis
+
+SELECT Payment_Method, COUNT(*) AS Payment_Method_Count
+FROM SHOPPING
+GROUP BY Payment_Method
+ORDER BY Payment_Method_Count DESC;
+#Payment Method Preferences
+
+SELECT Frequency_of_Purchases, COUNT(*) AS CustomerCount
+FROM SHOPPING 
+GROUP BY Frequency_of_Purchases;
+#Purchase Frequency Analysis
